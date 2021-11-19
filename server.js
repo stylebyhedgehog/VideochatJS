@@ -10,7 +10,7 @@ const io = require("socket.io")(server, {
     origin: '*'
   }
 });
-
+app.use(express.static('public'));
 mongoose.connect('mongodb+srv://fogdealer:kupol275@cluster0.eetey.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', (err) => {
   console.log("Database connection ", err)
 })
