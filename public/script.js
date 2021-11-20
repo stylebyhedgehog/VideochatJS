@@ -2,21 +2,29 @@ const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 const showChat = document.querySelector("#showChat");
-const backBtn = document.querySelector(".header__back");
+const hideChat = document.querySelector("#hideChat");
 myVideo.muted = true;
 
-backBtn.addEventListener("click", () => {
-  document.querySelector(".main__left").style.display = "flex";
-  document.querySelector(".main__left").style.flex = "1";
-  document.querySelector(".main__right").style.display = "none";
-  document.querySelector(".header__back").style.display = "none";
-});
+
 
 showChat.addEventListener("click", () => {
+  document.querySelector(".main__left").style.display = "flex";
+  document.querySelector(".main__right").style.display = "flex";
+  document.querySelector(".main__right").style.flex = "0.7";
+  document.querySelector(".main__left").style.flex = "0.3";
+  hideChat.style.display = "block";
+  showChat.style.display = "none";
+
+});
+
+hideChat.addEventListener("click", () => {
   document.querySelector(".main__right").style.display = "flex";
   document.querySelector(".main__right").style.flex = "1";
   document.querySelector(".main__left").style.display = "none";
-  document.querySelector(".header__back").style.display = "block";
+  showChat.style.display = "block";
+  hideChat.style.display = "none";
+
+
 });
 
 const { user, room } = Qs.parse(location.search, {
@@ -97,12 +105,10 @@ muteButton.addEventListener("click", () => {
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
     html = `<i class="fas fa-microphone-slash"></i>`;
-    muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   } else {
     myVideoStream.getAudioTracks()[0].enabled = true;
     html = `<i class="fas fa-microphone"></i>`;
-    muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   }
 });
@@ -112,12 +118,10 @@ stopVideo.addEventListener("click", () => {
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
     html = `<i class="fas fa-video-slash"></i>`;
-    stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   } else {
     myVideoStream.getVideoTracks()[0].enabled = true;
     html = `<i class="fas fa-video"></i>`;
-    stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   }
 });

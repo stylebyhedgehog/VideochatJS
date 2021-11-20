@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>videoChat</title>
+  <title>    <%= room %>
+  </title>
   <link rel="stylesheet" href="style.css" />
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
@@ -12,9 +13,6 @@
 <body>
 <div class="header">
   <div class="logo">
-    <div class="header__back">
-      <i class="fas fa-angle-left"></i>
-    </div>
     <h2>Видеочат</h2>
   </div>
 </div>
@@ -61,6 +59,9 @@
         </div>
         <div id="showChat" class="options__button">
           <i class="fa fa-comment"></i>
+        </div>
+        <div id="hideChat" class="options__button">
+          <i class="fa fa-bath"></i>
         </div>
       </div>
 

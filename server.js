@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require('mongoose')
 const server = require("http").Server(app);
 const Message = require('./models/Message')
-const { v4: uuidv4 } = require("uuid");
 app.set("view engine", "ejs");
 const io = require("socket.io")(server, {
   cors: {
