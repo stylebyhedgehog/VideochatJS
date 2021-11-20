@@ -16,8 +16,6 @@
       <i class="fas fa-angle-left"></i>
     </div>
     <h2>Видеочат</h2>
-    <%= JSON.stringify(msgs) %>
-
   </div>
 </div>
 <div class="main">
@@ -25,10 +23,16 @@
     <div class="main__chat_window">
       <div class="messages">
       <% msgs.forEach(function(msg) { %>
-          <script>console.log(msg)</script>
               <div class="message">
-                <b><i class="far fa-user-circle"></i> <span>
-                  <%= msg.user %></span> </b>
+                <b><i class="far fa-user-circle"></i>
+                  <span>
+                    <% if(msg.user === user){ %>
+                        <div>Я</div>
+                    <% } else{ %>
+                        <%= msg.user %>
+                    <% } %>
+
+                  </span> </b>
                 <span><%= msg.text %></span>
               </div>
           <% }); %>

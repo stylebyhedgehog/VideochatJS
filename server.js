@@ -29,8 +29,9 @@ app.get('/', function(req,res){
 }); 
 
 app.get('/room', function (req, res){
-  let roomn = req.params.roomname
-  let usern = req.params.username
+  let roomn = req.query.room
+  let usern = req.query.user
+
   Message.find({}, (error, messages) => {
     res.render('room',{room:roomn, user:usern, msgs: messages})
   })
