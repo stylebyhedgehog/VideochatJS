@@ -41,7 +41,6 @@ navigator.mediaDevices
 
     peer.on("call", (call) => {
       call.answer(stream);
-      console.log("Хеллоу подключились")
       const video = document.createElement("video");
       call.on("stream", (userVideoStream) => {
         addVideoStream(video, userVideoStream);
@@ -91,7 +90,6 @@ text.addEventListener("keydown", (e) => {
   }
 });
 
-const inviteButton = document.querySelector("#inviteButton");
 const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
 muteButton.addEventListener("click", () => {
@@ -124,12 +122,6 @@ stopVideo.addEventListener("click", () => {
   }
 });
 
-inviteButton.addEventListener("click", (e) => {
-  prompt(
-    "Ссылка на подключение к комнате",
-    window.location.href
-  );
-});
 
 socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
