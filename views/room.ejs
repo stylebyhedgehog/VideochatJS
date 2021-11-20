@@ -16,14 +16,14 @@
       <i class="fas fa-angle-left"></i>
     </div>
     <h2>Видеочат</h2>
+    <%= JSON.stringify(msgs) %>
+
   </div>
 </div>
 <div class="main">
   <div class="main__left">
     <div class="main__chat_window">
       <div class="messages">
-        <script>console.log(msgs)</script>
-
       <% msgs.forEach(function(msg) { %>
           <script>console.log(msg)</script>
               <div class="message">
