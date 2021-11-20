@@ -32,7 +32,7 @@ app.get('/room', function (req, res){
   let roomn = req.query.room
   let usern = req.query.user
 
-  Message.find({}, (error, messages) => {
+  Message.find({room: roomn}, (error, messages) => {
     res.render('room',{room:roomn, user:usern, msgs: messages})
   })
 })
