@@ -31,20 +31,15 @@ app.get('/', function(req,res){
 app.get('/room', function (req, res){
   let roomn = req.params.roomname
   let usern = req.params.username
-
-  res.render('room',{room:roomn, user:usern})
+  Message.find({room: roomn}, (error, messages) => {
+    res.render('room',{room:roomn, user:usern, msgs: messages})
+  })
 })
 
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId, userName) => {
     socket.join(roomId);
-    Message.find({}, (error, messages) => {
-      messages.forEach(el => {
-        if (el.room === roomId){
-          io.to(roomId).emit("createMessage", el.text, el.user);
-        }
-      })
-    })
+
     socket.to(roomId).broadcast.emit("user-connected", userId);
     socket.on("message", (message) => {
       io.to(roomId).emit("createMessage", message, userName);
